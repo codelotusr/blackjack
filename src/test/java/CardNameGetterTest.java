@@ -21,7 +21,7 @@ class CardNameGetterTest {
         String cardSuit = String.valueOf(Suit.DIAMOND);
 
         // check
-        Assertions.assertEquals("The Ace of Diamonds.", underTest.getCardName(cardName, cardSuit));
+        Assertions.assertEquals("The Ace of Diamonds", underTest.getCardName(cardName, cardSuit));
 
     }
 }
