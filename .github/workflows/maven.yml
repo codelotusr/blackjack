@@ -23,7 +23,7 @@ jobs:
           distribution: 'zulu'
 
       - name: Build
-        run: mvn --batch-mode --no-transfer-progress clean package
+        run: mvn --batch-mode --update-snapshots verify
 
       - name: Test Report
         uses: dorny/test-reporter@v1
@@ -31,5 +31,5 @@ jobs:
         with:
           artifact: test-results
           name: JAVA Tests            # Name of the check run which will be created
-          path: target/surefire-reports/*.xml    # Path to test results
+          path: target/surefire-reports/TEST*.xml # Path to test results
           reporter: java-junit        # Format of test results
