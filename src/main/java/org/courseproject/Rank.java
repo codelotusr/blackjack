@@ -1,6 +1,6 @@
 package org.courseproject;
 
-public enum Value {
+public enum Rank {
     ACE("Ace", 11),
     TWO("Two", 2),
     THREE("Three", 3),
@@ -18,7 +18,7 @@ public enum Value {
     final String name;
     final int value;
 
-    Value(String name, int value) {
+    Rank(String name, int value) {
         this.name = name;
         this.value = value;
     }
