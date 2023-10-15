@@ -1,8 +1,9 @@
-package org.courseproject;
+package org.courseproject.cards;
 
 import java.io.Serializable;
 
 public class Card implements Serializable {
+
     private final Suit suit;
     private final Rank rank;
 
@@ -25,7 +26,7 @@ public class Card implements Serializable {
 
     @Override
     public String toString() {
-        return rank + " of " + suit;
+        return String.format("[%s of %s] (%d)", rank, suit, this.getRankValue());
     }
 
 }
