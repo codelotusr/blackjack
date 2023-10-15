@@ -1,8 +1,32 @@
 package org.courseproject.cards;
 
-public enum Icon {
-    ACEOFSPADES("\uD83C\uDCA1"),
-    ACEOFHEARTS("\uD83C\uDCB1"),
-    ACEOFDIAMONDS("\uD83C\uDCC1"),
-    ACEOFCLUBS("")
+public enum UnicodeIcon {
+    ACEOFSPADES("""
+             _____
+            |A .  |
+            | /.\\ |
+            |(_._)|
+            |  |  |
+            |____V|
+            """, "Ace of Spades"),
+    ACEOFDIAMONDS("""
+             _____
+            |A ^  |
+            | / \\ |
+            | \\ / |
+            |  .  |
+            |____V|
+            """, "Ace of Diamonds");
+    private final String code;
+    private final String cardEquivalent;
+
+    UnicodeIcon(String code, String cardEquivalent) {
+        this.code = code;
+        this.cardEquivalent = cardEquivalent;
+    }
+
+    @Override
+    public String toString() {
+        return code;
+    }
 }

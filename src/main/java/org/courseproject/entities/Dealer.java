@@ -1,4 +1,5 @@
-package org.courseproject;
+package org.courseproject.entities;
 
-public class Dealer extends Player {
+public class Dealer extends Person {
+
 }
