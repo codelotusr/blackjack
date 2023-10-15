@@ -10,8 +10,5 @@ public class Blackjack {
         System.out.println("Welcome to Blackjack!");
         MainMenu mainMenu = new MainMenu();
         System.out.println(mainMenu);
-        UnicodeIcon testIcons = UnicodeIcon.ACEOFDIAMONDS;
-        System.out.println(testIcons);
-        Game game = new Game();
     }
 }

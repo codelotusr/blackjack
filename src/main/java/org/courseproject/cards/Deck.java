@@ -1,4 +1,4 @@
-package org.courseproject.deck_hand;
+package org.courseproject.cards;
 
 import org.courseproject.cards.Card;
 import java.util.ArrayList;
