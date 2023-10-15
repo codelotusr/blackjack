@@ -1,10 +1,17 @@
 package org.courseproject;
 
+import org.courseproject.cards.UnicodeIcon;
+import org.courseproject.core.Game;
+import org.courseproject.core.MainMenu;
+
+
 public class Blackjack {
     public static void main(String[] args) {
         System.out.println("Welcome to Blackjack!");
-        Game blackjack = new Game();
-        Card card = new Card(Suit.SPADE, Rank.ACE);
-        System.out.println(card);
+        MainMenu mainMenu = new MainMenu();
+        System.out.println(mainMenu);
+        UnicodeIcon testIcons = UnicodeIcon.ACEOFDIAMONDS;
+        System.out.println(testIcons);
+        Game game = new Game();
     }
 }

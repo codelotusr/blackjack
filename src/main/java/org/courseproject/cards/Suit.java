@@ -1,4 +1,4 @@
-package org.courseproject;
+package org.courseproject.cards;
 
 public enum Suit {
     SPADE("Spades"),
