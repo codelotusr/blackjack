@@ -7,13 +7,13 @@ import static org.junit.jupiter.api.Assertions.*;
 class MainMenuTest {
 
     @Test
-    void displayCorrectMainMenu() {
+    void itShouldDisplayCorrectMainMenu() {
         MainMenu underTest = new MainMenu();
         String expectedMainMenu = """
                 1) Play
                 2) Check Bank
                 3) Cash Out
-                4) Deck Amount
+                4) Settings
                 """;
 
         assertEquals(expectedMainMenu, underTest.toString());

@@ -5,7 +5,7 @@ public abstract class Person {
     private final int age;
     private int money;
 
-    public Person(String name, int age, int money) {
+    protected Person(String name, int age, int money) {
         this.name = name;
         this.age = age;
         this.money = money;
