@@ -2,6 +2,7 @@ package org.courseproject.cards;
 
 import org.courseproject.core.Settings;
 
+import java.security.SecureRandom;
 import java.util.*;
 
 public class Deck {
@@ -34,7 +35,7 @@ public class Deck {
     }
 
     public void shuffleDeck() {
-        Collections.shuffle(deck, new Random());
+        Collections.shuffle(deck, new SecureRandom());
     }
 
 }
