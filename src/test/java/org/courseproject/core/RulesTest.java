@@ -7,7 +7,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class RulesTest {
 
     @Test
-    void shouldPrintTheCorrectRulesAlways() {
+    void itShouldPrintTheCorrectRulesAlways() {
         Rules underTest = new Rules();
         String expectedRules = """
                 Each player starts with two cards, one of the dealer's cards is hidden until the end.

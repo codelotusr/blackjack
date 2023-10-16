@@ -17,16 +17,16 @@ public enum UnicodeIcon {
             |  .  |
             |____V|
             """, "Ace of Diamonds");
-    private final String code;
+    private final String art;
     private final String cardEquivalent;
 
-    UnicodeIcon(String code, String cardEquivalent) {
-        this.code = code;
+    UnicodeIcon(String art, String cardEquivalent) {
+        this.art = art;
         this.cardEquivalent = cardEquivalent;
     }
 
     @Override
     public String toString() {
-        return code;
+        return art;
     }
 }

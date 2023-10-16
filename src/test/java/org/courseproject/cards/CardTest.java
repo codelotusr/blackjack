@@ -9,49 +9,49 @@ class CardTest {
     private Card underTest;
 
     @Test
-    void shouldReturnCorrectCardNameAndValueWhenCardIsAceOfSpades() {
+    void itShouldReturnCorrectCardNameAndValueWhenCardIsAceOfSpades() {
         underTest = new Card(Suit.SPADE, Rank.ACE);
         assertEquals("[Ace of Spades] (11)", underTest.toString());
     }
 
     @Test
-    void shouldReturnCorrectCardNameWhenCardIsKingOfHearts() {
+    void itShouldReturnCorrectCardNameWhenCardIsKingOfHearts() {
         underTest = new Card(Suit.HEART, Rank.KING);
         assertEquals("King", underTest.getRank().name);
     }
 
     @Test
-    void shouldReturnCorrectCardNameWhenCardIsAce() {
+    void itShouldReturnCorrectCardNameWhenCardIsAce() {
         underTest = new Card(Suit.HEART, Rank.ACE);
         assertEquals("Ace", underTest.getRank().name);
     }
 
     @Test
-    void shouldReturnCorrectCardValueWhenCardIsKingOfHearts() {
+    void itShouldReturnCorrectCardValueWhenCardIsKingOfHearts() {
         underTest = new Card(Suit.HEART, Rank.KING);
         assertEquals(10, underTest.getRank().value);
     }
 
     @Test
-    void shouldReturnCorrectCardValueWhenCardIsAce() {
+    void itShouldReturnCorrectCardValueWhenCardIsAce() {
         underTest = new Card(Suit.HEART, Rank.ACE);
         assertEquals(11, underTest.getRank().value);
     }
 
     @Test
-    void shouldReturnCorrectCardSuitWhenCardIsKingOfHearts() {
+    void itShouldReturnCorrectCardSuitWhenCardIsKingOfHearts() {
         underTest = new Card(Suit.HEART, Rank.KING);
         assertEquals("Hearts", underTest.getSuit().name);
     }
 
     @Test
-    void shouldReturnCorrectCardSuitWhenCardIsAceOfSpades() {
+    void itShouldReturnCorrectCardSuitWhenCardIsAceOfSpades() {
         underTest = new Card(Suit.SPADE, Rank.ACE);
         assertEquals("Spades", underTest.getSuit().name);
     }
 
     @Test
-    void shouldReturnCorrectCardRankWhenCardIsKingOfHearts() {
+    void itShouldReturnCorrectCardRankWhenCardIsKingOfHearts() {
         underTest = new Card(Suit.HEART, Rank.KING);
         assertEquals("King", underTest.getRank().name);
     }

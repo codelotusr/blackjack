@@ -8,7 +8,7 @@ public class MainMenu {
                 1) Play
                 2) Check Bank
                 3) Cash Out
-                4) Deck Amount
+                4) Settings
                 """;
     }
 
