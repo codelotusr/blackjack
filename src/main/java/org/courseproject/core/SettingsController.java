@@ -32,7 +32,9 @@ public class SettingsController {
                 int deckAmount = scanner.nextInt();
                 settings.setNumberOfDecks(deckAmount);
             }
-            case 3 -> System.out.println("Returning to main menu...");
+            case 3 -> {
+                System.out.println("Returning to main menu...");
+            }
         }
     }
 }

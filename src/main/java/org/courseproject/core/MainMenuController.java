@@ -24,7 +24,11 @@ public class MainMenuController {
             case 1 -> System.out.println("Starting the game...");
             case 2 -> System.out.println("Checking bank balance...");
             case 3 -> System.out.println("Cashing out...");
-            case 4 -> System.out.println("Opening settings...");
+            case 4 -> {
+                System.out.println("Opening settings...");
+                SettingsController settingsController = new SettingsController();
+                settingsController.handleUserInput();
+            }
             case 5 -> {
                 System.out.println("Thank you for playing!");
                 System.exit(1);
