@@ -9,14 +9,6 @@ public class Settings {
         this.numberOfDecks = 2;
     }
 
-    public void setNumberOfPlayers(int numberOfPlayers) {
-        this.numberOfPlayers = numberOfPlayers;
-    }
-
-    public void setNumberOfDecks(int numberOfDecks) {
-        this.numberOfDecks = numberOfDecks;
-    }
-
     public int getNumberOfPlayers() {
         return numberOfPlayers;
     }
@@ -25,11 +17,20 @@ public class Settings {
         return numberOfDecks;
     }
 
+    public void setNumberOfPlayers(int numberOfPlayers) {
+        this.numberOfPlayers = numberOfPlayers;
+    }
+
+    public void setNumberOfDecks(int numberOfDecks) {
+        this.numberOfDecks = numberOfDecks;
+    }
+
     @Override
     public String toString() {
         return String.format("""
-                Player amount: %d
-                Number of Decks: %d
+                1) Player amount: %d
+                2) Number of Decks: %d
+                3) Back to main menu
                 """, numberOfPlayers, numberOfDecks);
     }
 }

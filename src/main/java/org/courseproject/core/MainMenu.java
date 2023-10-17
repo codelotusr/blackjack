@@ -9,6 +9,7 @@ public class MainMenu {
                 2) Check Bank
                 3) Cash Out
                 4) Settings
+                5) Quit
                 """;
     }
 
