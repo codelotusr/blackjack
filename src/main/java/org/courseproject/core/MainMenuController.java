@@ -12,7 +12,7 @@ public class MainMenuController {
         this.scanner = new Scanner(System.in);
     }
 
-    public void display() {
+    private void display() {
         System.out.println(mainMenu);
     }
 
@@ -21,25 +21,18 @@ public class MainMenuController {
         int choice = scanner.nextInt();
 
         switch (choice) {
-            case 1:
-                System.out.println("Starting the game...");
-                break;
-            case 2:
-                System.out.println("Checking bank balance...");
-                break;
-            case 3:
-                System.out.println("Cashing out...");
-                break;
-            case 4:
-                System.out.println("Opening settings...");
-                break;
-            case 5:
+            case 1 -> System.out.println("Starting the game...");
+            case 2 -> System.out.println("Checking bank balance...");
+            case 3 -> System.out.println("Cashing out...");
+            case 4 -> System.out.println("Opening settings...");
+            case 5 -> {
                 System.out.println("Thank you for playing!");
                 System.exit(1);
-            default:
+            }
+            default -> {
                 System.out.println("Invalid choice. Please select a valid option.");
                 handleUserInput();
-                break;
+            }
         }
     }
 }

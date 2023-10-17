@@ -28,8 +28,9 @@ class SettingsTest {
     @Test
     void itShouldTurnTheSettingsToString() {
         String expectedSettingsString = String.format("""
-                Player amount: %d
-                Number of Decks: %d
+                1) Player amount: %d
+                2) Number of Decks: %d
+                3) Back to main menu
                 """, underTest.getNumberOfPlayers(), underTest.getNumberOfDecks());
         assertEquals(expectedSettingsString, underTest.toString());
     }
