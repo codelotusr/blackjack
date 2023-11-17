@@ -1,6 +1,10 @@
 package org.courseproject.core;
 
-public class Settings {
+import java.io.Serializable;
+
+public class Settings implements Serializable {
+
+    private static Settings instance = null;
     private int numberOfPlayers;
     private int numberOfDecks;
 
@@ -23,6 +27,13 @@ public class Settings {
 
     public void setNumberOfDecks(int numberOfDecks) {
         this.numberOfDecks = numberOfDecks;
+    }
+
+    public static Settings getInstance() {
+        if (instance == null) {
+            instance = new Settings();
+        }
+        return instance;
     }
 
     @Override
