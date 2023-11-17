@@ -1,6 +1,7 @@
 package org.courseproject.core;
 
 public class MainMenu {
+    public static MainMenu instance = null;
     private final String options;
 
     public MainMenu() {
@@ -11,6 +12,13 @@ public class MainMenu {
                 4) Settings
                 5) Quit
                 """;
+    }
+
+    public static MainMenu getInstance() {
+        if (instance == null) {
+            instance = new MainMenu();
+        }
+        return instance;
     }
 
     @Override

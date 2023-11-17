@@ -41,7 +41,6 @@ public class Settings implements Serializable {
         return String.format("""
                 1) Player amount: %d
                 2) Number of Decks: %d
-                3) Back to main menu
                 """, numberOfPlayers, numberOfDecks);
     }
 }
