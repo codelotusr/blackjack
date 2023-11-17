@@ -1,4 +1,4 @@
 package org.courseproject.core;
 
-public interface Screen {
+public class GameController {
 }

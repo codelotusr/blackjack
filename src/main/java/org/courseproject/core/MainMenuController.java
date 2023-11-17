@@ -21,7 +21,10 @@ public class MainMenuController {
         int choice = scanner.nextInt();
 
         switch (choice) {
-            case 1 -> System.out.println("Starting the game...");
+            case 1 -> {
+                System.out.println("Starting the game...");
+                Game game = new Game();
+            }
             case 2 -> System.out.println("Checking bank balance...");
             case 3 -> System.out.println("Cashing out...");
             case 4 -> {
