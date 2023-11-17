@@ -15,13 +15,16 @@ public class MainMenuController {
 
     public void handleUserInput() {
         while (stateManager.getCurrentState() == GameState.MAIN_MENU) {
+            System.out.println(stateManager.getMainMenu());
             int choice = scanner.nextInt();
 
             switch (choice) {
                 case 1 -> stateManager.setCurrentState(GameState.GAME);
-                case 2 -> stateManager.setCurrentState(GameState.SETTINGS);
-                case 3 -> stateManager.setCurrentState(GameState.RULES);
-                case 4 -> {
+                case 2 -> stateManager.setCurrentState(GameState.BANK);
+                case 3 -> stateManager.setCurrentState(GameState.CASH_OUT);
+                case 4 -> stateManager.setCurrentState(GameState.SETTINGS);
+                case 5 -> stateManager.setCurrentState(GameState.RULES);
+                case 6 -> {
                     System.out.println("Exiting...");
                     SettingsIO.saveSettings(stateManager.getSettings());
                     System.exit(0);
