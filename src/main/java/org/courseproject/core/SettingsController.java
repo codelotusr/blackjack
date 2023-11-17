@@ -3,38 +3,42 @@ package org.courseproject.core;
 import java.util.Scanner;
 
 public class SettingsController {
-
-    private final Settings settings;
+    private final StateManager stateManager;
     private final Scanner scanner;
 
-    public SettingsController() {
-        this.settings = Settings.getInstance();
+    public SettingsController(StateManager stateManager) {
+        this.stateManager = stateManager;
         this.scanner = new Scanner(System.in);
     }
 
-    private void display() {
-        System.out.println(settings);
-        System.out.println("Which setting do you want to modify?");
-    }
-
     public void handleUserInput() {
-        display();
-        int choice = scanner.nextInt();
+        while (stateManager.getCurrentState() == GameState.SETTINGS) {
+            displaySettings();
+            int choice = scanner.nextInt();
 
-        switch (choice) {
-            case 1 -> {
-                System.out.println("Change player amount");
-                int playerAmount = scanner.nextInt();
-                settings.setNumberOfPlayers(playerAmount);
-            }
-            case 2 -> {
-                System.out.println("Change deck amount");
-                int deckAmount = scanner.nextInt();
-                settings.setNumberOfDecks(deckAmount);
-            }
-            case 3 -> {
-                System.out.println("Returning to main menu...");
+            switch (choice) {
+                case 1:
+                    System.out.println("Enter number of players:");
+                    int numPlayers = scanner.nextInt();
+                    stateManager.getSettings().setNumberOfPlayers(numPlayers);
+                    break;
+                case 2:
+                    System.out.println("Current Settings:");
+                    System.out.println(stateManager.getSettings());
+                    break;
+                case 3:
+                    stateManager.setCurrentState(GameState.MAIN_MENU);
+                    break;
+                default:
+                    System.out.println("Invalid choice. Please select a valid option.");
             }
         }
+    }
+
+    private void displaySettings() {
+        System.out.println("Settings:");
+        System.out.println("1. Change settings");
+        System.out.println("2. Show current settings");
+        System.out.println("3. Back to main menu");
     }
 }
