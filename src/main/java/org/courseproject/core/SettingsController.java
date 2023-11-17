@@ -8,7 +8,7 @@ public class SettingsController {
     private final Scanner scanner;
 
     public SettingsController() {
-        this.settings = new Settings();
+        this.settings = Settings.getInstance();
         this.scanner = new Scanner(System.in);
     }
 

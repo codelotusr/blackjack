@@ -1,5 +1,7 @@
 package org.courseproject.core;
 
+import org.courseproject.utils.SettingsIO;
+
 import java.util.Scanner;
 
 public class MainMenuController {
@@ -34,6 +36,7 @@ public class MainMenuController {
             }
             case 5 -> {
                 System.out.println("Thank you for playing!");
+                SettingsIO.saveSettings(Settings.getInstance());
                 System.exit(1);
             }
             default -> {
