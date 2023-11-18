@@ -5,25 +5,26 @@ import org.courseproject.entities.Dealer;
 import org.courseproject.entities.Player;
 
 import java.util.ArrayList;
-import java.util.Scanner; // Import Scanner for input
+import java.util.Scanner;
 
 public class Game {
-
     private static Game instance = null;
     private final Deck deck;
     private final Dealer dealer;
     private ArrayList<Player> players;
     private boolean isPlayerTurn;
     private Scanner scanner;
-    private final StateManager stateManager = StateManager.getInstance();
+    private final StateManager stateManager;
 
-    public Game() {
+    private Game() {
         this.deck = new Deck();
         this.dealer = new Dealer("Benjamin", 1000000);
         this.players = new ArrayList<>();
         this.isPlayerTurn = true;
         this.scanner = new Scanner(System.in);
+        this.stateManager = StateManager.getInstance();
         initializePlayers();
+        this.stateManager.setGame(this);
     }
 
     private void initializePlayers() {
@@ -51,6 +52,4 @@ public class Game {
         }
         return instance;
     }
-
 }
-

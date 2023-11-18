@@ -11,6 +11,10 @@ public class Rules {
                 """;
     }
 
+    public static Rules getInstance() {
+        return new Rules();
+    }
+
     @Override
     public String toString() {
         return rules;

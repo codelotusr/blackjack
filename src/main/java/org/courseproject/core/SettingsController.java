@@ -1,5 +1,7 @@
 package org.courseproject.core;
 
+import org.courseproject.utils.SettingsIO;
+
 import java.util.Scanner;
 
 public class SettingsController {
@@ -29,7 +31,10 @@ public class SettingsController {
                     System.out.println("Current Settings:");
                     System.out.println(stateManager.getSettings());
                 }
-                case 3 -> stateManager.setCurrentState(GameState.MAIN_MENU);
+                case 3 -> {
+                    SettingsIO.saveSettings(stateManager.getSettings());
+                    stateManager.setCurrentState(GameState.MAIN_MENU);
+                }
                 default -> System.out.println("Invalid choice. Please select a valid option.");
             }
         }

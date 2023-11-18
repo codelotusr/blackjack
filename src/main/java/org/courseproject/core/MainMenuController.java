@@ -1,7 +1,5 @@
 package org.courseproject.core;
 
-import org.courseproject.utils.SettingsIO;
-
 import java.util.Scanner;
 
 public class MainMenuController {
@@ -26,13 +24,12 @@ public class MainMenuController {
                 case 5 -> stateManager.setCurrentState(GameState.RULES);
                 case 6 -> {
                     System.out.println("Exiting...");
-                    SettingsIO.saveSettings(stateManager.getSettings());
-                    System.exit(0);
+                    stateManager.setCurrentState(GameState.EXIT);
                 }
                 default -> System.out.println("Invalid choice. Please select a valid option.");
             }
         }
     }
-
 }
+
 
