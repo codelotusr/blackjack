@@ -2,12 +2,10 @@ package org.courseproject.entities;
 
 public abstract class Person {
     private final String name;
-    private final int age;
     private int money;
 
-    protected Person(String name, int age, int money) {
+    protected Person(String name, int money) {
         this.name = name;
-        this.age = age;
         this.money = money;
     }
 
