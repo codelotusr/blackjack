@@ -17,6 +17,14 @@ public abstract class Person {
         this.money = money;
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public void addMoney(int money) {
+        this.money += money;
+    }
+
     @Override
     public String toString() {
         return String.format("[%s]: %d€", name, money);

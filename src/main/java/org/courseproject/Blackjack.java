@@ -9,7 +9,7 @@ public class Blackjack {
 
         Settings settings = SettingsIO.loadSettings();
 
-        StateManager stateManager = new StateManager(settings, new MainMenu());
+        StateManager stateManager = new StateManager(settings, new MainMenu(), new Game());
         MainMenuController mainMenuController = new MainMenuController(stateManager);
         SettingsController settingsController = new SettingsController(stateManager);
 
@@ -17,6 +17,11 @@ public class Blackjack {
             switch (stateManager.getCurrentState()) {
                 case MAIN_MENU -> mainMenuController.handleUserInput();
                 case SETTINGS -> settingsController.handleUserInput();
+                case GAME -> {
+                    Game game = stateManager.getGame();
+                    game.startGame();
+                    stateManager.setCurrentState(GameState.MAIN_MENU);
+                }
             }
         }
     }
