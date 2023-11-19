@@ -10,6 +10,7 @@ public class SettingsIO {
             out.writeObject(settings);
         } catch (IOException ignored) {
         }
+
     }
 
     public static Settings loadSettings() {

@@ -51,4 +51,7 @@ public class Deck {
         }
     }
 
+    public boolean isEmpty() {
+        return deck.isEmpty();
+    }
 }

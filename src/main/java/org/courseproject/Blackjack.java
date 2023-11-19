@@ -33,7 +33,9 @@ public class Blackjack {
                         game.handlePlayerTurn();
                     }
 
-                    game.handleDealerTurn();
+                    if (!game.isPlayerTurn()){
+                        game.handleDealerTurn();
+                    }
 
                     game.determineWinner();
 

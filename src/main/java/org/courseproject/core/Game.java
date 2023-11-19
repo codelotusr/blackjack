@@ -10,7 +10,7 @@ import java.util.Scanner;
 public class Game {
     private static Game instance = null;
     private static final int VALUE_LIMIT = 21;
-    private final String EURO = "€";
+    private static final String EURO = "€";
     private final Deck deck;
     private final Dealer dealer;
     private final StateManager stateManager;
@@ -44,8 +44,10 @@ public class Game {
             stateManager.getMainMenuController().handleUserInput();
         }
         placeBets();
-        deck.makeDeck(stateManager.getSettings().getNumberOfDecks());
-        deck.shuffleDeck();
+        if (deck == null || deck.isEmpty()) {
+            deck.makeDeck(stateManager.getSettings().getNumberOfDecks());
+            deck.shuffleDeck();
+        }
         dealInitialCards();
         displayTable();
     }
@@ -132,19 +134,21 @@ public class Game {
             printHit(dealer);
             displayTable();
             if (dealer.getHandValue() > VALUE_LIMIT) {
-                System.out.println(dealer.getName() + " busted!");
+                printBusted(dealer);
                 handlePlayerWin();
             }
         }
     }
 
     public void handlePlayerLoss() {
+        displayTable();
         System.out.println("You lost " + player.getBet() + EURO);
         printMoneyLeft();
         handlePlayAgain();
     }
 
     public void handlePlayerWin() {
+        displayTable();
         player.setMoney(player.getMoney() + player.getBet() * 2);
         System.out.println("You won " + player.getBet() + EURO);
         printMoneyLeft();
@@ -152,6 +156,7 @@ public class Game {
     }
 
     public void handleTie() {
+        displayTable();
         player.setMoney(player.getMoney() + player.getBet());
         System.out.println("You got your bet back");
         printMoneyLeft();
@@ -159,6 +164,9 @@ public class Game {
     }
 
     public void handlePlayAgain() {
+        player.getHand().clear();
+        dealer.getHand().clear();
+        isPlayerTurn = true;
         System.out.println("Play again? (y/n)");
         while (true) {
             String choice = scanner.nextLine().trim();
