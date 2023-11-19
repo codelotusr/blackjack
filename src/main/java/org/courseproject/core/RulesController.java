@@ -4,14 +4,26 @@ import java.util.Scanner;
 
 public class RulesController {
     private final StateManager stateManager;
+    private final Rules rules;
 
     public RulesController(StateManager stateManager) {
         this.stateManager = stateManager;
+        this.rules = new Rules();
     }
 
     public void handleUserInput() {
-        // Implement the logic for the RULES state
-        // Example: Display the game rules
-        // Then, set the state back to MAIN_MENU
+Scanner scanner = new Scanner(System.in);
+        while (stateManager.getCurrentState() == GameState.RULES) {
+            System.out.println("Rules");
+            System.out.println(rules);
+            System.out.println("1. Back to main menu");
+            int choice = scanner.nextInt();
+            scanner.nextLine();
+            if (choice == 1) {
+                stateManager.setCurrentState(GameState.MAIN_MENU);
+            } else {
+                System.out.println("Invalid choice. Please select a valid option.");
+            }
+        }
     }
 }

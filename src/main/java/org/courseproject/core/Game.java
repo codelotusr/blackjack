@@ -39,7 +39,7 @@ public class Game {
     private void initializePlayers() {
         System.out.println("Enter player name:");
         String name = scanner.nextLine();
-        Player player = new Player(name, 1000);
+        this.player.setName(name);
     }
 
     public void startGame() {
@@ -89,9 +89,9 @@ public class Game {
 
     public void displayTable() {
         System.out.println("Dealer:");
-        System.out.println(dealer.getHand() + " " + dealer.getHandValue());
+        System.out.println(dealer.getHand() + " Total value: " + dealer.getHandValue());
         System.out.println("Players:");
-        System.out.println(player.getName() + " " + player.getHand() + " " + player.getHandValue());
+        System.out.println(player.getName() + " " + player.getHand() + " Total value: " + player.getHandValue());
     }
 
     public boolean isPlayerTurn() {
@@ -106,6 +106,7 @@ public class Game {
         scanner.nextLine();
         switch (choice) {
             case 1 -> {
+                System.out.println(player.getName() + " hits");
                 player.addCard(deck.dealCard());
                 displayTable();
                 if (player.getHandValue() > valueLimit) {
@@ -113,7 +114,11 @@ public class Game {
                     handlePlayerLoss();
                 }
             }
-            case 2 -> isPlayerTurn = false;
+            case 2 -> {
+                System.out.println(player.getName() + " stands");
+                isPlayerTurn = false;
+            }
+            default -> System.out.println("Invalid choice. Please select a valid option.");
         }
     }
 
@@ -123,6 +128,7 @@ public class Game {
         }
         while (dealer.getHandValue() < dealerLimit) {
             dealer.addCard(deck.dealCard());
+            System.out.println(dealer.getName() + " hits");
             displayTable();
             if (dealer.getHandValue() > valueLimit) {
                 System.out.println(dealer.getName() + " busted!");
@@ -152,17 +158,18 @@ public class Game {
     }
 
     public void handlePlayAgain() {
-        player.setBet(0);
-        player.clearHand();
-        dealer.clearHand();
-        isPlayerTurn = true;
         System.out.println("Play again? (y/n)");
-        String choice = scanner.nextLine().trim();
-        if (choice.equalsIgnoreCase("y")) {
-            startGame();
-        } else {
-            stateManager.setCurrentState(GameState.MAIN_MENU);
-            stateManager.getMainMenuController().handleUserInput();
+        while (true) {
+            String choice = scanner.nextLine().trim();
+            if (choice.equalsIgnoreCase("y")) {
+                startGame();
+                break;
+            } else if (choice.equalsIgnoreCase("n")) {
+                stateManager.setCurrentState(GameState.MAIN_MENU);
+                stateManager.getMainMenuController().handleUserInput();
+            } else {
+                System.out.println("Invalid input. Please enter 'y' to continue or 'n' to exit.");
+            }
         }
     }
 

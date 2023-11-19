@@ -13,6 +13,7 @@ public class Blackjack {
 
         mainMenuController = new MainMenuController(stateManager);
         SettingsController settingsController = new SettingsController(stateManager);
+        RulesController rulesController = new RulesController(stateManager);
 
         while (stateManager.getCurrentState() != GameState.EXIT) {
             switch (stateManager.getCurrentState()) {
@@ -38,10 +39,7 @@ public class Blackjack {
 
                 }
                 case RULES -> {
-                    // implement the logic for the RULES state
-                }
-                case EXIT -> {
-                    // implement the logic for the EXIT state
+                    rulesController.handleUserInput();
                 }
             }
         }

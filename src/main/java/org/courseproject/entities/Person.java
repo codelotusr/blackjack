@@ -5,7 +5,7 @@ import org.courseproject.cards.Card;
 import java.util.ArrayList;
 
 public abstract class Person {
-    private final String name;
+    private String name;
     private int money;
     private ArrayList<Card> hand = new ArrayList<Card>();
 
@@ -53,5 +53,9 @@ public abstract class Person {
     @Override
     public String toString() {
         return String.format("[%s]: %d€", name, money);
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 }
