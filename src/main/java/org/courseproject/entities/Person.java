@@ -8,7 +8,7 @@ import java.util.ArrayList;
 public abstract class Person {
     private String name;
     private int money;
-    private ArrayList<Card> hand = new ArrayList<Card>();
+    private final ArrayList<Card> hand = new ArrayList<Card>();
 
     protected Person(String name, int money) {
         this.name = name;
@@ -27,20 +27,12 @@ public abstract class Person {
         return name;
     }
 
-    public void addMoney(int money) {
-        this.money += money;
-    }
-
     public void addCard(Card card) {
         hand.add(card);
     }
 
     public ArrayList<Card> getHand() {
         return hand;
-    }
-
-    public void clearHand() {
-        hand.clear();
     }
 
     public int getHandValue() {

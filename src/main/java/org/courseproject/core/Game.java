@@ -8,7 +8,6 @@ import java.util.Scanner;
 
 public class Game {
     private static Game instance = null;
-    private final int dealerLimit = 17;
     private final int valueLimit = 21;
     private final Deck deck;
     private final Dealer dealer;
@@ -45,6 +44,7 @@ public class Game {
     public void startGame() {
         if (player.getMoney() <= 0) {
             System.out.println("You have no money left. Returning to main menu.");
+            player.setMoney(1000);
             stateManager.setCurrentState(GameState.MAIN_MENU);
             stateManager.getMainMenuController().handleUserInput();
         }
@@ -131,6 +131,7 @@ public class Game {
         if (!isPlayerTurn) {
             displayTable();
         }
+        int dealerLimit = 17;
         while (dealer.getHandValue() < dealerLimit) {
             dealer.addCard(deck.dealCard());
             System.out.println(dealer.getName() + " hits");
