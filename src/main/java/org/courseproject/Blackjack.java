@@ -8,24 +8,34 @@ public class Blackjack {
         System.out.println("Welcome to Blackjack!");
 
         Settings settings = SettingsIO.loadSettings();
-        StateManager stateManager = new StateManager(settings, MainMenu.getInstance());
+        MainMenuController mainMenuController = null;
+        StateManager stateManager = new StateManager(settings, MainMenu.getInstance(), mainMenuController);
 
-        MainMenuController mainMenuController = new MainMenuController(stateManager);
+        mainMenuController = new MainMenuController(stateManager);
         SettingsController settingsController = new SettingsController(stateManager);
 
         while (stateManager.getCurrentState() != GameState.EXIT) {
             switch (stateManager.getCurrentState()) {
                 case MAIN_MENU -> mainMenuController.handleUserInput();
-                case BANK -> {
-                }
-                case CASH_OUT -> {
-                    // implement the logic for the CASH_OUT state
-                }
                 case SETTINGS -> settingsController.handleUserInput();
                 case GAME -> {
                     Game game = stateManager.getGame();
+
+                    if (game == null) {
+                        game = Game.getInstance();
+                        stateManager.setGame(game);
+                    }
+
                     game.startGame();
-                    stateManager.setCurrentState(GameState.MAIN_MENU);
+
+                    while (game.isPlayerTurn()) {
+                        game.handlePlayerTurn();
+                    }
+
+                    game.handleDealerTurn();
+
+                    game.determineWinner();
+
                 }
                 case RULES -> {
                     // implement the logic for the RULES state

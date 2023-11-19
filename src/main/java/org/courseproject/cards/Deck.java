@@ -38,4 +38,8 @@ public class Deck {
         Collections.shuffle(deck, new SecureRandom());
     }
 
+    public Card dealCard() {
+        return deck.remove(0);
+    }
+
 }
