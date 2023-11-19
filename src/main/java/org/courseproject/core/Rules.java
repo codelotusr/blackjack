@@ -1,10 +1,10 @@
 package org.courseproject.core;
 
 public class Rules {
-    private final String rules;
+    private final String gameRules;
 
     public Rules() {
-        this.rules = """
+        this.gameRules = """
                 Each player starts with two cards, one of the dealer's cards is hidden until the end.
                 To 'Hit' is to ask for another card. To 'Stand' is to hold your total and end your turn.
                 If you go over 21 you bust, and the dealer wins regardless of the dealer's hand.
@@ -17,6 +17,6 @@ public class Rules {
 
     @Override
     public String toString() {
-        return rules;
+        return gameRules;
     }
 }
