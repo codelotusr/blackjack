@@ -39,6 +39,11 @@ public class Deck {
     }
 
     public Card dealCard() {
+        if (deck.size() <= 0) {
+            deck = new ArrayList<Card>();
+            makeDeck(Settings.getInstance().getNumberOfDecks());
+            shuffleDeck();
+        }
         return deck.remove(0);
     }
 

@@ -1,6 +1,7 @@
 package org.courseproject.entities;
 
 import org.courseproject.cards.Card;
+import org.courseproject.cards.Rank;
 
 import java.util.ArrayList;
 
@@ -44,9 +45,20 @@ public abstract class Person {
 
     public int getHandValue() {
         int value = 0;
+        int aceCount = 0;
+
         for (Card card : hand) {
-            value += card.getRank().getValue();
+            value += card.getRankValue();
+            if (card.getRank() == Rank.ACE) {
+                aceCount++;
+            }
         }
+
+        while (value > 21 && aceCount > 0) {
+            value -= 10;
+            aceCount--;
+        }
+
         return value;
     }
 

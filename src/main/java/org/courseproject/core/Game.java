@@ -43,6 +43,11 @@ public class Game {
     }
 
     public void startGame() {
+        if (player.getMoney() <= 0) {
+            System.out.println("You have no money left. Returning to main menu.");
+            stateManager.setCurrentState(GameState.MAIN_MENU);
+            stateManager.getMainMenuController().handleUserInput();
+        }
         placeBets();
         deck.makeDeck(stateManager.getSettings().getNumberOfDecks());
         deck.shuffleDeck();
@@ -172,7 +177,6 @@ public class Game {
             }
         }
     }
-
 
     public void determineWinner() {
         if (player.getHandValue() > valueLimit) {
