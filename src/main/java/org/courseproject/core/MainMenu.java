@@ -7,10 +7,9 @@ public class MainMenu {
     public MainMenu() {
         this.options = """
                 1) Play
-                2) Check Bank
-                3) Cash Out
-                4) Settings
-                5) Quit
+                2) Settings
+                3) Rules
+                4) Quit
                 """;
     }
 

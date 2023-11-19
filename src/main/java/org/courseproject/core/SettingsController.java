@@ -1,5 +1,7 @@
 package org.courseproject.core;
 
+import org.courseproject.utils.SettingsIO;
+
 import java.util.Scanner;
 
 public class SettingsController {
@@ -17,20 +19,23 @@ public class SettingsController {
             int choice = scanner.nextInt();
 
             switch (choice) {
-                case 1:
+                case 1 -> {
                     System.out.println("Enter number of players:");
                     int numPlayers = scanner.nextInt();
                     stateManager.getSettings().setNumberOfPlayers(numPlayers);
-                    break;
-                case 2:
+                    System.out.println("Enter number of decks:");
+                    int numDecks = scanner.nextInt();
+                    stateManager.getSettings().setNumberOfDecks(numDecks);
+                }
+                case 2 -> {
                     System.out.println("Current Settings:");
                     System.out.println(stateManager.getSettings());
-                    break;
-                case 3:
+                }
+                case 3 -> {
+                    SettingsIO.saveSettings(stateManager.getSettings());
                     stateManager.setCurrentState(GameState.MAIN_MENU);
-                    break;
-                default:
-                    System.out.println("Invalid choice. Please select a valid option.");
+                }
+                default -> System.out.println("Invalid choice. Please select a valid option.");
             }
         }
     }

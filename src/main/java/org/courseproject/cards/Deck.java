@@ -9,7 +9,7 @@ public class Deck {
     private ArrayList<Card> deck;
 
     public Deck() {
-        this.deck = new ArrayList<Card>();
+        this.deck = new ArrayList<>();
     }
 
     public Card peek(){
@@ -36,6 +36,19 @@ public class Deck {
 
     public void shuffleDeck() {
         Collections.shuffle(deck, new SecureRandom());
+    }
+
+    public Card dealCard() {
+        checkDeckSize();
+        return deck.remove(0);
+    }
+
+    public void checkDeckSize() {
+        if (deck.size() <= 0) {
+            deck = new ArrayList<>();
+            makeDeck(Settings.getInstance().getNumberOfDecks());
+            shuffleDeck();
+        }
     }
 
 }

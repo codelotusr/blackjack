@@ -1,13 +1,17 @@
 package org.courseproject.entities;
 
-public abstract class Person {
-    private final String name;
-    private final int age;
-    private int money;
+import org.courseproject.cards.Card;
+import org.courseproject.cards.Rank;
 
-    protected Person(String name, int age, int money) {
+import java.util.ArrayList;
+
+public abstract class Person {
+    private String name;
+    private int money;
+    private final ArrayList<Card> hand = new ArrayList<>();
+
+    protected Person(String name, int money) {
         this.name = name;
-        this.age = age;
         this.money = money;
     }
 
@@ -19,8 +23,43 @@ public abstract class Person {
         this.money = money;
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public void addCard(Card card) {
+        hand.add(card);
+    }
+
+    public ArrayList<Card> getHand() {
+        return hand;
+    }
+
+    public int getHandValue() {
+        int value = 0;
+        int aceCount = 0;
+
+        for (Card card : hand) {
+            value += card.getRankValue();
+            if (card.getRank() == Rank.ACE) {
+                aceCount++;
+            }
+        }
+
+        while (value > 21 && aceCount > 0) {
+            value -= 10;
+            aceCount--;
+        }
+
+        return value;
+    }
+
     @Override
     public String toString() {
         return String.format("[%s]: %d€", name, money);
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 }
