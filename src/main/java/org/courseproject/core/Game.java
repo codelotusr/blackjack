@@ -2,13 +2,15 @@ package org.courseproject.core;
 
 import org.courseproject.cards.Deck;
 import org.courseproject.entities.Dealer;
+import org.courseproject.entities.Person;
 import org.courseproject.entities.Player;
 
 import java.util.Scanner;
 
 public class Game {
     private static Game instance = null;
-    private static final int valueLimit = 21;
+    private static final int VALUE_LIMIT = 21;
+    private final String EURO = "€";
     private final Deck deck;
     private final Dealer dealer;
     private final StateManager stateManager;
@@ -24,7 +26,6 @@ public class Game {
         this.isPlayerTurn = true;
         this.scanner = new Scanner(System.in);
         this.stateManager = StateManager.getInstance();
-        initializePlayers();
         this.stateManager.setGame(this);
     }
 
@@ -33,12 +34,6 @@ public class Game {
             instance = new Game();
         }
         return instance;
-    }
-
-    private void initializePlayers() {
-        System.out.println("Enter player name:");
-        String name = scanner.nextLine();
-        this.player.setName(name);
     }
 
     public void startGame() {
@@ -56,38 +51,38 @@ public class Game {
     }
 
     private void placeBets() {
-        System.out.println("You have " + player.getMoney() + "€ left");
+        printMoneyLeft();
         System.out.println("Enter your bet:");
         int bet = scanner.nextInt();
         scanner.nextLine();
         player.placeBet(bet);
-        System.out.println("You bet " + bet + "€");
-        System.out.println("You have " + player.getMoney() + "€ left");
+        System.out.println("You bet " + bet + EURO);
+        printMoneyLeft();
     }
 
     private void dealInitialCards() {
         player.addCard(deck.dealCard());
         player.addCard(deck.dealCard());
-        if (player.getHandValue() > valueLimit) {
-            System.out.println(player.getName() + " busted!");
+        if (player.getHandValue() > VALUE_LIMIT) {
+            printBusted(player);
             handlePlayerLoss();
         }
         dealer.addCard(deck.dealCard());
         dealer.addCard(deck.dealCard());
-        if (dealer.getHandValue() > valueLimit) {
-            System.out.println(dealer.getName() + " busted!");
+        if (dealer.getHandValue() > VALUE_LIMIT) {
+            printBusted(dealer);
             handlePlayerWin();
         }
-        if (dealer.getHandValue() == valueLimit && player.getHandValue() == valueLimit) {
+        if (dealer.getHandValue() == VALUE_LIMIT && player.getHandValue() == VALUE_LIMIT) {
             System.out.println("Both you and the dealer got Blackjack!");
             handleTie();
         }
-        if (dealer.getHandValue() == valueLimit) {
-            System.out.println(dealer.getName() + " got Blackjack!");
+        if (dealer.getHandValue() == VALUE_LIMIT) {
+            printBlackjack(dealer);
             handlePlayerLoss();
         }
-        if (player.getHandValue() == valueLimit) {
-            System.out.println(player.getName() + " got Blackjack!");
+        if (player.getHandValue() == VALUE_LIMIT) {
+            printBlackjack(player);
             handlePlayerWin();
         }
     }
@@ -111,11 +106,11 @@ public class Game {
         scanner.nextLine();
         switch (choice) {
             case 1 -> {
-                System.out.println(player.getName() + " hits");
+                printHit(player);
                 player.addCard(deck.dealCard());
                 displayTable();
-                if (player.getHandValue() > valueLimit) {
-                    System.out.println(player.getName() + " busted!");
+                if (player.getHandValue() > VALUE_LIMIT) {
+                    printBusted(player);
                     handlePlayerLoss();
                 }
             }
@@ -134,9 +129,9 @@ public class Game {
         int dealerLimit = 17;
         while (dealer.getHandValue() < dealerLimit) {
             dealer.addCard(deck.dealCard());
-            System.out.println(dealer.getName() + " hits");
+            printHit(dealer);
             displayTable();
-            if (dealer.getHandValue() > valueLimit) {
+            if (dealer.getHandValue() > VALUE_LIMIT) {
                 System.out.println(dealer.getName() + " busted!");
                 handlePlayerWin();
             }
@@ -144,22 +139,22 @@ public class Game {
     }
 
     public void handlePlayerLoss() {
-        System.out.println("You lost " + player.getBet() + "€");
-        System.out.println("You have " + player.getMoney() + "€ left");
+        System.out.println("You lost " + player.getBet() + EURO);
+        printMoneyLeft();
         handlePlayAgain();
     }
 
     public void handlePlayerWin() {
         player.setMoney(player.getMoney() + player.getBet() * 2);
-        System.out.println("You won " + player.getBet() + "€");
-        System.out.println("You have " + player.getMoney() + "€ left");
+        System.out.println("You won " + player.getBet() + EURO);
+        printMoneyLeft();
         handlePlayAgain();
     }
 
     public void handleTie() {
         player.setMoney(player.getMoney() + player.getBet());
         System.out.println("You got your bet back");
-        System.out.println("You have " + player.getMoney() + "€ left");
+        printMoneyLeft();
         handlePlayAgain();
     }
 
@@ -180,9 +175,9 @@ public class Game {
     }
 
     public void determineWinner() {
-        if (player.getHandValue() > valueLimit) {
+        if (player.getHandValue() > VALUE_LIMIT) {
             handlePlayerLoss();
-        } else if (dealer.getHandValue() > valueLimit) {
+        } else if (dealer.getHandValue() > VALUE_LIMIT) {
             handlePlayerWin();
         } else if (player.getHandValue() > dealer.getHandValue()) {
             handlePlayerWin();
@@ -191,6 +186,22 @@ public class Game {
         } else {
             handleTie();
         }
+    }
+
+    public void printMoneyLeft() {
+        System.out.println("You have " + player.getMoney() + EURO + " left");
+    }
+
+    public void printBusted(Person person) {
+        System.out.println(person.getName() + " busted!");
+    }
+
+    public void printBlackjack(Person person) {
+        System.out.println(person.getName() + " got Blackjack!");
+    }
+
+    public void printHit(Person person) {
+        System.out.println(person.getName() + " hits");
     }
 
 }
