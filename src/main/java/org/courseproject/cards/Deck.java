@@ -9,7 +9,7 @@ public class Deck {
     private ArrayList<Card> deck;
 
     public Deck() {
-        this.deck = new ArrayList<Card>();
+        this.deck = new ArrayList<>();
     }
 
     public Card peek(){
@@ -40,7 +40,7 @@ public class Deck {
 
     public Card dealCard() {
         if (deck.size() <= 0) {
-            deck = new ArrayList<Card>();
+            deck = new ArrayList<>();
             makeDeck(Settings.getInstance().getNumberOfDecks());
             shuffleDeck();
         }

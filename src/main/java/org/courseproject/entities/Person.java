@@ -8,7 +8,7 @@ import java.util.ArrayList;
 public abstract class Person {
     private String name;
     private int money;
-    private final ArrayList<Card> hand = new ArrayList<Card>();
+    private final ArrayList<Card> hand = new ArrayList<>();
 
     protected Person(String name, int money) {
         this.name = name;
