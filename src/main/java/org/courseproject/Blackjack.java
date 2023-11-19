@@ -38,9 +38,9 @@ public class Blackjack {
                     game.determineWinner();
 
                 }
-                case RULES -> {
-                    rulesController.handleUserInput();
-                }
+                case RULES -> rulesController.handleUserInput();
+                case EXIT -> System.out.println("Exiting...");
+                default -> System.out.println("Invalid state");
             }
         }
 
