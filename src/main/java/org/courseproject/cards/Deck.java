@@ -39,12 +39,12 @@ public class Deck {
     }
 
     public Card dealCard() {
-        checkDeckSize();
+        checkCurrentDeckSize();
         return deck.remove(0);
     }
 
-    public void checkDeckSize() {
-        if (deck.size() <= 0) {
+    public void checkCurrentDeckSize() {
+        if (deck.isEmpty()) {
             deck = new ArrayList<>();
             makeDeck(Settings.getInstance().getNumberOfDecks());
             shuffleDeck();

@@ -8,7 +8,7 @@ import java.util.Scanner;
 
 public class Game {
     private static Game instance = null;
-    private final int valueLimit = 21;
+    private static final int valueLimit = 21;
     private final Deck deck;
     private final Dealer dealer;
     private final StateManager stateManager;
