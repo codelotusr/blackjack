@@ -44,7 +44,7 @@ public class Game {
             stateManager.getMainMenuController().handleUserInput();
         }
         placeBets();
-        if (deck == null || deck.isEmpty()) {
+        if (deck.isEmpty()) {
             deck.makeDeck(stateManager.getSettings().getNumberOfDecks());
             deck.shuffleDeck();
         }

@@ -41,7 +41,11 @@ public class Blackjack {
 
                 }
                 case RULES -> rulesController.handleUserInput();
-                case EXIT -> System.out.println("Exiting...");
+                case EXIT -> {
+                    System.out.println("Exiting...");
+                    SettingsIO.saveSettings(settings);
+                    System.exit(0);
+                }
                 default -> System.out.println("Invalid state");
             }
         }
