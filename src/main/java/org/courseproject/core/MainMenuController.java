@@ -22,7 +22,7 @@ public class MainMenuController {
                 case 3 -> stateManager.setCurrentState(GameState.RULES);
                 case 4 -> {
                     System.out.println("Exiting...");
-                    stateManager.setCurrentState(GameState.EXIT);
+                    System.exit(0);
                 }
                 default -> System.out.println("Invalid choice. Please select a valid option.");
             }
