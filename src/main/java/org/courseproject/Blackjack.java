@@ -29,16 +29,6 @@ public class Blackjack {
 
                     game.startGame();
 
-                    while (game.isPlayerTurn()) {
-                        game.handlePlayerTurn();
-                    }
-
-                    if (!game.isPlayerTurn()){
-                        game.handleDealerTurn();
-                    }
-
-                    game.determineWinner();
-
                 }
                 case RULES -> rulesController.handleUserInput();
                 case EXIT -> {
