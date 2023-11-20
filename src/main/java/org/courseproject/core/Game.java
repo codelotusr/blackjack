@@ -50,6 +50,11 @@ public class Game {
         }
         dealInitialCards();
         displayTable();
+        while (isPlayerTurn) {
+            handlePlayerTurn();
+        }
+        handleDealerTurn();
+        determineWinner();
     }
 
     private void placeBets() {
