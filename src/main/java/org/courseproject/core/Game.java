@@ -4,6 +4,7 @@ import org.courseproject.cards.Deck;
 import org.courseproject.entities.Dealer;
 import org.courseproject.entities.Person;
 import org.courseproject.entities.Player;
+import org.courseproject.interfaces.HandleTurn;
 
 import java.util.Scanner;
 
@@ -17,6 +18,8 @@ public class Game {
     private final Player player;
     private boolean isPlayerTurn;
     private Scanner scanner;
+    HandleTurn playerTurn = new PlayerTurn();
+    HandleTurn dealerTurn = new DealerTurn();
 
 
     private Game() {
@@ -51,9 +54,9 @@ public class Game {
         dealInitialCards();
         displayTable();
         while (isPlayerTurn) {
-            handlePlayerTurn();
+            playerTurn.executeTurn(this);
         }
-        handleDealerTurn();
+        dealerTurn.executeTurn(this);
         determineWinner();
     }
 
@@ -235,5 +238,17 @@ public class Game {
 
     public void setScanner(Scanner mockScanner) {
         this.scanner = mockScanner;
+    }
+
+    public Scanner getScanner() {
+        return scanner;
+    }
+
+    public int getValueLimit() {
+        return VALUE_LIMIT;
+    }
+
+    public void setPlayerTurn(boolean b) {
+        this.isPlayerTurn = b;
     }
 }
