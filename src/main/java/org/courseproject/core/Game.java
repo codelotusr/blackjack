@@ -4,6 +4,7 @@ import org.courseproject.cards.Deck;
 import org.courseproject.entities.Dealer;
 import org.courseproject.entities.Person;
 import org.courseproject.entities.Player;
+import org.courseproject.interfaces.HandleTurn;
 
 import java.util.Scanner;
 
@@ -16,7 +17,9 @@ public class Game {
     private final StateManager stateManager;
     private final Player player;
     private boolean isPlayerTurn;
-    private final Scanner scanner;
+    private Scanner scanner;
+    HandleTurn playerTurn = new PlayerTurn();
+    HandleTurn dealerTurn = new DealerTurn();
 
 
     private Game() {
@@ -51,13 +54,13 @@ public class Game {
         dealInitialCards();
         displayTable();
         while (isPlayerTurn) {
-            handlePlayerTurn();
+            playerTurn.executeTurn(this);
         }
-        handleDealerTurn();
+        dealerTurn.executeTurn(this);
         determineWinner();
     }
 
-    private void placeBets() {
+    void placeBets() {
         printMoneyLeft();
         System.out.println("Enter your bet:");
         int bet = scanner.nextInt();
@@ -67,7 +70,7 @@ public class Game {
         printMoneyLeft();
     }
 
-    private void dealInitialCards() {
+    void dealInitialCards() {
         player.addCard(deck.dealCard());
         player.addCard(deck.dealCard());
         if (player.getHandValue() > VALUE_LIMIT) {
@@ -103,46 +106,6 @@ public class Game {
 
     public boolean isPlayerTurn() {
         return isPlayerTurn;
-    }
-
-    public void handlePlayerTurn() {
-        System.out.println("Enter your choice:");
-        System.out.println("1) Hit");
-        System.out.println("2) Stand");
-        int choice = scanner.nextInt();
-        scanner.nextLine();
-        switch (choice) {
-            case 1 -> {
-                printHit(player);
-                player.addCard(deck.dealCard());
-                displayTable();
-                if (player.getHandValue() > VALUE_LIMIT) {
-                    printBusted(player);
-                    handlePlayerLoss();
-                }
-            }
-            case 2 -> {
-                System.out.println(player.getName() + " stands");
-                isPlayerTurn = false;
-            }
-            default -> System.out.println("Invalid choice. Please select a valid option.");
-        }
-    }
-
-    public void handleDealerTurn() {
-        if (!isPlayerTurn) {
-            displayTable();
-        }
-        int dealerLimit = 17;
-        while (dealer.getHandValue() < dealerLimit) {
-            dealer.addCard(deck.dealCard());
-            printHit(dealer);
-            displayTable();
-            if (dealer.getHandValue() > VALUE_LIMIT) {
-                printBusted(dealer);
-                handlePlayerWin();
-            }
-        }
     }
 
     public void handlePlayerLoss() {
@@ -217,4 +180,35 @@ public class Game {
         System.out.println(person.getName() + " hits");
     }
 
+    public Deck getDeck() {
+        return deck;
+    }
+
+    public Dealer getDealer() {
+        return dealer;
+    }
+
+    public Player getPlayer() {
+        return player;
+    }
+
+    public StateManager getStateManager() {
+        return stateManager;
+    }
+
+    public void setScanner(Scanner mockScanner) {
+        this.scanner = mockScanner;
+    }
+
+    public Scanner getScanner() {
+        return scanner;
+    }
+
+    public int getValueLimit() {
+        return VALUE_LIMIT;
+    }
+
+    public void setPlayerTurn(boolean b) {
+        this.isPlayerTurn = b;
+    }
 }
