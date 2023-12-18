@@ -108,46 +108,6 @@ public class Game {
         return isPlayerTurn;
     }
 
-    public void handlePlayerTurn() {
-        System.out.println("Enter your choice:");
-        System.out.println("1) Hit");
-        System.out.println("2) Stand");
-        int choice = scanner.nextInt();
-        scanner.nextLine();
-        switch (choice) {
-            case 1 -> {
-                printHit(player);
-                player.addCard(deck.dealCard());
-                displayTable();
-                if (player.getHandValue() > VALUE_LIMIT) {
-                    printBusted(player);
-                    handlePlayerLoss();
-                }
-            }
-            case 2 -> {
-                System.out.println(player.getName() + " stands");
-                isPlayerTurn = false;
-            }
-            default -> System.out.println("Invalid choice. Please select a valid option.");
-        }
-    }
-
-    public void handleDealerTurn() {
-        if (!isPlayerTurn) {
-            displayTable();
-        }
-        int dealerLimit = 17;
-        while (dealer.getHandValue() < dealerLimit) {
-            dealer.addCard(deck.dealCard());
-            printHit(dealer);
-            displayTable();
-            if (dealer.getHandValue() > VALUE_LIMIT) {
-                printBusted(dealer);
-                handlePlayerWin();
-            }
-        }
-    }
-
     public void handlePlayerLoss() {
         displayTable();
         System.out.println("You lost " + player.getBet() + EURO);
