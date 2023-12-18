@@ -18,4 +18,6 @@ public class Player extends Person {
     public void setBet(int newBet) {
         this.bet = newBet;
     }
+
+
 }

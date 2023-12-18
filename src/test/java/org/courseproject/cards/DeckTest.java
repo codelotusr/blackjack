@@ -39,5 +39,18 @@ class DeckTest {
         assertEquals(208, underTest.getSize());
     }
 
+    @Test
+    public void itShouldDoDeckShufflingCorrectly() {
+        Deck deck1 = new Deck();
+        deck1.makeDeck(1);
+        Deck deck2 = new Deck();
+        deck2.makeDeck(1);
+
+        deck2.shuffleDeck();
+
+        assertNotEquals(deck1.dealCard(), deck2.dealCard());
+    }
+
+
 
 }
