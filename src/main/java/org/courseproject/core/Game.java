@@ -16,7 +16,7 @@ public class Game {
     private final StateManager stateManager;
     private final Player player;
     private boolean isPlayerTurn;
-    private final Scanner scanner;
+    private Scanner scanner;
 
 
     private Game() {
@@ -57,7 +57,7 @@ public class Game {
         determineWinner();
     }
 
-    private void placeBets() {
+    void placeBets() {
         printMoneyLeft();
         System.out.println("Enter your bet:");
         int bet = scanner.nextInt();
@@ -67,7 +67,7 @@ public class Game {
         printMoneyLeft();
     }
 
-    private void dealInitialCards() {
+    void dealInitialCards() {
         player.addCard(deck.dealCard());
         player.addCard(deck.dealCard());
         if (player.getHandValue() > VALUE_LIMIT) {
@@ -217,4 +217,23 @@ public class Game {
         System.out.println(person.getName() + " hits");
     }
 
+    public Deck getDeck() {
+        return deck;
+    }
+
+    public Dealer getDealer() {
+        return dealer;
+    }
+
+    public Player getPlayer() {
+        return player;
+    }
+
+    public StateManager getStateManager() {
+        return stateManager;
+    }
+
+    public void setScanner(Scanner mockScanner) {
+        this.scanner = mockScanner;
+    }
 }
